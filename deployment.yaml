@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: custom-liveness-demo
-          image: custom-liveness-demo:latest
+          image: prafullkotecha/custom-liveness-demo:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
