@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-liveness-demo
+  labels:
+    app: custom-liveness-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom-liveness-demo
+  template:
+    metadata:
+      labels:
+        app: custom-liveness-demo
+    spec:
+      containers:
+        - name: custom-liveness-demo
+          image: custom-liveness-demo:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 2
